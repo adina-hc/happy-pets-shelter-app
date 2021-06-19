@@ -10,4 +10,5 @@ const seedAll = async () => {
   await seedPets();
   process.exit(0);
 };
+
 seedAll();
