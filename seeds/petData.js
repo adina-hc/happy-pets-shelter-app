@@ -18,7 +18,5 @@ const petdata = [
     category_id: 2,
   },  
 ];
-
 const seedPets = () => Pet.bulkCreate(petdata);
-
 module.exports = seedPets;

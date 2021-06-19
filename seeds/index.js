@@ -8,8 +8,6 @@ const seedAll = async () => {
   await seedCategory();
 
   await seedPets();
-
   process.exit(0);
 };
-
 seedAll();
