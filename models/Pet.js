@@ -30,7 +30,7 @@ Pet.init(
     status: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue:"Shelter",
+      defaultValue: 'Shelter',
     },
     category_id: {
       type: DataTypes.INTEGER,
@@ -39,6 +39,17 @@ Pet.init(
         key: 'id',
       },
     },
+    cage: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    adoption_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'adopter',
+        key: 'id',
+      }
+    }
   },
   {
     sequelize,
