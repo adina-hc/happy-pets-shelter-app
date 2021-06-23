@@ -35,6 +35,19 @@ User.init(
         len: [6],
       },
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },    
+    lastname: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }, 
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'Public',
+    },       
   },
   {
     hooks: {
