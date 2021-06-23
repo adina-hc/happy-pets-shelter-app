@@ -24,10 +24,6 @@ Adopter.init(
                 model: 'user',
                 key: 'id',
         },
-        adopter_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },   
     },
 },
     {
