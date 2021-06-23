@@ -39,17 +39,21 @@ Pet.init(
         key: 'id',
       },
     },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
     cage: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    adoption_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'adopter',
-        key: 'id',
-      }
-    },
+    adoption_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      },
     filename: {
       type: DataTypes.STRING,
       allowNull: false,

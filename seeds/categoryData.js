@@ -2,10 +2,10 @@ const { Category } = require('../models');
 
 const categorydata = [
   {
-    name: 'Perros',
+    name: 'Dogs',
   },
   {
-    name: 'Gatos',
+    name: 'Cats',
   },
 ];
 

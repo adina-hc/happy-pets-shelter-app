@@ -89,4 +89,16 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/admin-login', (req, res) => {
+    res.render('admin-login');
+});
+
+router.get('/admin', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/admin-login');
+  } else {
+    res.render('enter-pet');
+  }
+});
+
 module.exports = router;
