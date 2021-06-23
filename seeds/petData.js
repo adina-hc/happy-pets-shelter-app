@@ -8,6 +8,9 @@ const petdata = [
     size: 35,
     status: 'Available',
     category_id: 1,
+    cage:1,
+    filename:"01-blossoming-apricot.jpg",
+    adoption_id: 1,    
   },
   {
     name: 'Silvester',
@@ -16,6 +19,9 @@ const petdata = [
     size: 50,
     status: 'Available',
     category_id: 2,
+    cage:2,
+    filename:"02-cosmos-flowers.jpg",
+    adoption_id: 2,        
   },  
 ];
 
