@@ -23,18 +23,19 @@ Adopter.init(
             references: {
                 model: 'user',
                 key: 'id',
+        }
         },
         adopter_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },   
     },
-},
     {
       sequelize,
       freezeTableName: true,
       underscored: true,
       modelName: 'adopter',
+      timestamps: false,
       }
 );
 

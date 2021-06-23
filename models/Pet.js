@@ -49,13 +49,18 @@ Pet.init(
         model: 'adopter',
         key: 'id',
       }
-    }
+    },
+    filename: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },    
   },
   {
     sequelize,
     freezeTableName: true,
     underscored: true,
     modelName: 'pet',
+    timestamps: false,
   }
 );
 
