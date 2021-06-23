@@ -9,7 +9,7 @@ const petdata = [
     status: 'Available',
     category_id: 1,
     cage:1,
-    filename:"01-blossoming-apricot.jpg",
+    filename:"solovino.jpg",
     adoption_id: 1,    
   },
   {
@@ -20,7 +20,7 @@ const petdata = [
     status: 'Available',
     category_id: 2,
     cage:2,
-    filename:"02-cosmos-flowers.jpg",
+    filename:"silvester.jpg",
     adoption_id: 2,        
   },  
 ];
