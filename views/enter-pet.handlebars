@@ -1,0 +1,37 @@
+<div class="row justify-space-between-md">
+    <h2 class="page-title">Enter Pet</h2>
+    <form class="form enter-pet-form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-input" type="text" id="name" required />
+      </div>
+      <div class="form-group">
+        <label for="color">Color:</label>
+        <input class="form-input" type="text" id="color" required />
+      </div>
+      <div class="form-group">
+        <label for="size">Size:</label>
+        <input class="form-input" type="number" id="size" required />
+      </div>
+      <div class="form-group">
+        <label for="found_date">Found Date:</label>
+        <input class="form-input" type="date" id="found_date" required />
+      </div>
+      <div class="form-group">
+        <label for="filename">Image:</label>
+        <input class="form-input" type="text" id="filename" required />
+      </div>
+      <div class="form-group">
+        <label for="category_id">Category:</label>
+        <select class="form-input" id="category_id" name="category_id" required>
+          <option value="1">Dogs</option>
+          <option value="2">Cats</option>
+        </select>    
+      </div>  
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Enter</button>
+      </div>
+    </form>
+</div>
+
+<script src="./js/enter-pet.js"></script>
