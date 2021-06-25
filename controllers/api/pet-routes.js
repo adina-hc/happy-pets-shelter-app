@@ -8,6 +8,7 @@ router.post('/', async (req, res) => {
       name: req.body.name,
       color: req.body.color,
       size: req.body.size,
+      age: req.body.age,
       found_date: req.body.found_date,
       status: req.body.status,
       category_id: req.body.category_id,      
