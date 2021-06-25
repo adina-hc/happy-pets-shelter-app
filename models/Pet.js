@@ -22,6 +22,7 @@ Pet.init(
     age: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1,
     },
     found_date: {
       type: DataTypes.DATE,
@@ -57,11 +58,11 @@ Pet.init(
     adoption_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      },
+    },
     filename: {
       type: DataTypes.STRING,
       allowNull: false,
-    },    
+    },
   },
   {
     sequelize,
