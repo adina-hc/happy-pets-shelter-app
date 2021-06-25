@@ -8,6 +8,7 @@ router.post('/', async (req, res) => {
       name: req.body.name,
       color: req.body.color,
       size: req.body.size,
+      age: req.body.age,
       found_date: req.body.found_date,
       status: req.body.status,
       category_id: req.body.category_id,      
@@ -49,4 +50,21 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+
+//Get the last pet image name
+router.get('/', async (req, res) => {
+  try {
+    const dbPetData = await Pet.findAll({
+      attributes: ['filename'],
+      limit: 1,
+      order: [ [ 'id', 'DESC' ]]
+});
+    res.status(200).json(dbPetData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
+
