@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Category, Pet } = require('../models');
+const fs= require('fs')
+const fetch = require('node-fetch');
 
 // GET all categories for homepage
 router.get('/', async (req, res) => {
@@ -12,7 +14,7 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-
+    
     const categories = dbCategoryData.map((category) =>
       category.get({ plain: true })
     );
@@ -100,5 +102,40 @@ router.get('/admin', (req, res) => {
     res.render('enter-pet');
   }
 });
+
+
+router.post('/upload', (req, res) => {
+  
+  //Get last pet image
+  async function saveImage(){
+    try {
+      const getLastPetImageName = await fetch('http://127.0.0.1:3001/api/pets', {
+        method: 'GET'
+      });
+      const result=await getLastPetImageName.json()
+      const filename=result[0].filename
+
+      const file=fs.createWriteStream(`public/images/${filename}`)
+      req.on('data',chunk=>{
+        file.write(chunk)
+      })
+
+      req.on('end',()=>{
+        file.end()
+        res.send({
+          ok:true
+        })
+      })
+
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+
+  }
+  saveImage()  
+
+ });
+
 
 module.exports = router;

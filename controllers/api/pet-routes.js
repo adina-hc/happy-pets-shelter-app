@@ -26,4 +26,19 @@ router.post('/', async (req, res) => {
 });
 
 
+//Get the last pet image name
+router.get('/', async (req, res) => {
+  try {
+    const dbPetData = await Pet.findAll({
+      attributes: ['filename'],
+      limit: 1,
+      order: [ [ 'id', 'DESC' ]]
+});
+    res.status(200).json(dbPetData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
