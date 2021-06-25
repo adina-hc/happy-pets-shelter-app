@@ -33,7 +33,7 @@ router.put('/:id', async (req, res) => {
     try {
       const pet = await Pet.update(
         {
-          user_id: req.body.user_id,
+          user_id: req.session.user_id,
         },
         {
           where: {
