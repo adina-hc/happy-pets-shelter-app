@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{name}}!</h2>
+  </div>
+</div>
+
+
+
+{{#if pets.length}}
+<div class="col-md-6 project-list">
+  <h3>Your family:</h3>
+
+  {{#each pets as |pet|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <h4><a href="/project/{{pet.id}}">{{pet.name}}</a></h4>
+    </div>
+
+  </div>
+  {{/each}}
+</div>
+{{/if}}
+
+
+ <img class="profileimage" src="/images/profileimg.png" alt="user petting dog">

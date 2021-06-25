@@ -2,7 +2,7 @@
   --primary: #333333;
   --secondary: #A8DADC;
   --tertiary: #333;
-  --quatrinary: #6c6b67;
+  --quatrinary: #333;
   --light: #F1FAEE;
   --dark: #292929;
   --error: rgb(228, 46, 1);
@@ -162,4 +162,48 @@ img {
   flex-flow: column wrap;
   align-content: flex-start;
   align-items: center;
+}
+
+
+.buttonprofile {
+   
+  width: 250px;
+  height: 100px;
+  border: none;
+  color: #333;
+  border-radius: 4px;
+  transition: ease-out 0.3s;
+  font-size: 2rem;
+  outline: none;
+  border: 3px solid #A8DADC; 
+  position: relative;
+  z-index: 1;
+}
+
+.buttonprofile:hover {
+color: #333;
+cursor: pointer;
+}
+
+.buttonprofile:before {
+transition: 0.5s all ease;
+position: absolute;
+top: 0;
+left: 50%;
+right: 50%;
+bottom: 0;
+opacity: 0;
+content: "";
+background-color: #a8dadc;
+
+
+}
+
+.buttonprofile:hover:before {
+transition:0.5s all ease ;
+left: 0;
+right: 0;
+opacity: 1;
+z-index: -1;
+
 }

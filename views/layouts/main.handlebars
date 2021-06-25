@@ -18,7 +18,7 @@
   <header>
     <img id="small-logo" src="/images/logosmall.png" alt="logo" width="150px" height="200px">
 
-    
+
     <svg id="titleanim" width="466" height="196" viewBox="0 0 466 196" fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask id="path-1-outside-1" maskUnits="userSpaceOnUse" x="0.121643" y="0.671997" width="466" height="196"
         fill="black">
@@ -114,12 +114,19 @@
     <a href="/login">Login</a>
     {{/if}}
     <a href="/admin">Admin</a>
+
   </nav>
   <main>
     <aside>
       <img class="catlogo" src="/images/catlogo.png" alt="cat logo">
-      
+
       <h2> <br> Find your friend</h2>
+      {{#if loggedIn}}
+      <div class="container">
+        <a href='/profile'><button class="buttonprofile">Profile</button></a>
+
+      </div>
+      {{/if}}
     </aside>
     <div class="category">
       {{{body}}}
