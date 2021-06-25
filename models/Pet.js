@@ -19,7 +19,7 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
+    cage: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1,

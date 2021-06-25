@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { Category, Pet } = require('../models');
+const { Category, Pet, User } = require('../models');
 const fs= require('fs')
 const fetch = require('node-fetch');
+
 
 // GET all categories for homepage
 router.get('/', async (req, res) => {
@@ -82,6 +83,40 @@ router.get('/pet/:id', async (req, res) => {
   }
 });
 
+
+router.get('/profile', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Pet }],
+      });
+      
+      const petData = await Pet.findAll({
+        where: {
+          user_id: req.session.user_id
+        }
+      });
+
+      const pets = petData.map((onePet) => onePet.get({ plain: true }));
+
+      const user = userData.get({ plain: true });
+      console.log(user);
+  
+      res.render('profile', {
+        ...user,
+        pets,
+        logged_in: true,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+});
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -139,3 +174,4 @@ router.post('/upload', (req, res) => {
 
 
 module.exports = router;
+

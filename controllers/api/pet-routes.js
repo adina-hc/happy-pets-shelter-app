@@ -26,6 +26,30 @@ router.post('/', async (req, res) => {
   }
 });
 
+// Update a PET user_id (user 'adopts' a pet)
+router.put('/:id', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    try {
+      const pet = await Pet.update(
+        {
+          user_id: req.session.user_id,
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+      console.log(pet);
+      res.status(200).json(pet);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+});
+
 
 //Get the last pet image name
 router.get('/', async (req, res) => {
@@ -43,3 +67,4 @@ router.get('/', async (req, res) => {
 });
 
 module.exports = router;
+
