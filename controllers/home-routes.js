@@ -109,7 +109,7 @@ router.post('/upload', (req, res) => {
   //Get last pet image
   async function saveImage(){
     try {
-      const getLastPetImageName = await fetch('http://127.0.0.1:3001/api/pets', {
+      const getLastPetImageName = await fetch('https://desolate-tundra-25750.herokuapp.com/api/pets', {
         method: 'GET'
       });
       const result=await getLastPetImageName.json()
