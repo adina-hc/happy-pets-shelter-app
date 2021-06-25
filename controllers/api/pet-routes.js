@@ -27,9 +27,9 @@ router.post('/', async (req, res) => {
 
 // Update a PET user_id (user 'adopts' a pet)
 router.put('/:id', async (req, res) => {
-  // if (!req.session.loggedIn) {
-  //   res.redirect('/login');
-  // } else {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
     try {
       const pet = await Pet.update(
         {
@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  // }
+  }
 });
 
 module.exports = router;
