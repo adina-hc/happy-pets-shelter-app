@@ -71,5 +71,5 @@ Pet.init(
     timestamps: false,
   }
 );
-
+ 
 module.exports = Pet;
