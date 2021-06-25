@@ -18,13 +18,4 @@ Pet.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-// Adoption relationship
-// User.hasMany(Adopter, {
-//   foreignKey: 'user_id',
-// });
-
-// Adopter.belongsTo(User, {
-//   foreignKey: 'user_id',
-// });
-
 module.exports = { User, Category, Pet };
