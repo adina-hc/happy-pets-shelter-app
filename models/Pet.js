@@ -19,6 +19,10 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     found_date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -67,5 +71,5 @@ Pet.init(
     timestamps: false,
   }
 );
-
+ 
 module.exports = Pet;
