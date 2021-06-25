@@ -7,3 +7,12 @@ anime({
     direction: 'alternate',
     loop: true
   });
+
+  anime({
+    targets: '.catlogo',
+    translateX: 20,
+    scale: 2,
+    durattion:3000,
+    rotate: '1turn'
+    
+  });
