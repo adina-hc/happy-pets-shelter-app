@@ -19,6 +19,11 @@ Pet.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    cage: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+    },
     found_date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -53,11 +58,11 @@ Pet.init(
     adoption_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      },
+    },
     filename: {
       type: DataTypes.STRING,
       allowNull: false,
-    },    
+    },
   },
   {
     sequelize,
@@ -67,5 +72,5 @@ Pet.init(
     timestamps: false,
   }
 );
-
+ 
 module.exports = Pet;

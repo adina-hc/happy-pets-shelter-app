@@ -1,5 +1,8 @@
 const router = require('express').Router();
-const { Category, Pet } = require('../models');
+const { Category, Pet, User } = require('../models');
+const fs= require('fs')
+const fetch = require('node-fetch');
+
 
 // GET all categories for homepage
 router.get('/', async (req, res) => {
@@ -12,7 +15,7 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-
+    
     const categories = dbCategoryData.map((category) =>
       category.get({ plain: true })
     );
@@ -80,6 +83,40 @@ router.get('/pet/:id', async (req, res) => {
   }
 });
 
+
+router.get('/profile', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/login');
+  } else {
+    try {
+      // Find the logged in user based on the session ID
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Pet }],
+      });
+      
+      const petData = await Pet.findAll({
+        where: {
+          user_id: req.session.user_id
+        }
+      });
+
+      const pets = petData.map((onePet) => onePet.get({ plain: true }));
+
+      const user = userData.get({ plain: true });
+      console.log(user);
+  
+      res.render('profile', {
+        ...user,
+        pets,
+        logged_in: true,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }
+});
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -101,4 +138,40 @@ router.get('/admin', (req, res) => {
   }
 });
 
+
+router.post('/upload', (req, res) => {
+  
+  //Get last pet image
+  async function saveImage(){
+    try {
+      const getLastPetImageName = await fetch('https://desolate-tundra-25750.herokuapp.com/api/pets', {
+        method: 'GET'
+      });
+      const result=await getLastPetImageName.json()
+      const filename=result[0].filename
+
+      const file=fs.createWriteStream(`public/images/${filename}`)
+      req.on('data',chunk=>{
+        file.write(chunk)
+      })
+
+      req.on('end',()=>{
+        file.end()
+        res.send({
+          ok:true
+        })
+      })
+
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+
+  }
+  saveImage()  
+
+ });
+
+
 module.exports = router;
+
