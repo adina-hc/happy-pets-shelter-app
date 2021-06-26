@@ -1,6 +1,7 @@
 const router = require('express').Router();
+
 const { Category, Pet, User } = require('../models');
-const fs= require('fs')
+const fs = require('fs')
 const fetch = require('node-fetch');
 
 
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-    
+
     const categories = dbCategoryData.map((category) =>
       category.get({ plain: true })
     );
@@ -49,13 +50,27 @@ router.get('/category/:id', async (req, res) => {
               'found_date',
               'size',
               'status',
-              'filename',              
+              'filename',
             ],
+            where: {
+              user_id: 1
+            },
           },
+
         ],
       });
-      const category = dbCategoryData.get({ plain: true });
-      res.render('category', { category: category, loggedIn: req.session.loggedIn });
+      var isEmpty = false
+      if (dbCategoryData == null) {
+        isEmpty = true
+        const category = {
+          name:""
+        }
+        res.render('category', { category: category, empty: isEmpty });
+      } else {
+        isEmpty = false
+        const category = dbCategoryData.get({ plain: true });
+        res.render('category', { category: category, empty: isEmpty });
+      }
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -94,7 +109,7 @@ router.get('/profile', async (req, res) => {
         attributes: { exclude: ['password'] },
         include: [{ model: Pet }],
       });
-      
+
       const petData = await Pet.findAll({
         where: {
           user_id: req.session.user_id
@@ -105,7 +120,7 @@ router.get('/profile', async (req, res) => {
 
       const user = userData.get({ plain: true });
       console.log(user);
-  
+
       res.render('profile', {
         ...user,
         pets,
@@ -126,8 +141,11 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+
+
+
 router.get('/admin-login', (req, res) => {
-    res.render('admin-login');
+  res.render('admin-login');
 });
 
 router.get('/admin', (req, res) => {
@@ -140,25 +158,25 @@ router.get('/admin', (req, res) => {
 
 
 router.post('/upload', (req, res) => {
-  
+
   //Get last pet image
-  async function saveImage(){
+  async function saveImage() {
     try {
       const getLastPetImageName = await fetch('https://desolate-tundra-25750.herokuapp.com/api/pets', {
         method: 'GET'
       });
-      const result=await getLastPetImageName.json()
-      const filename=result[0].filename
+      const result = await getLastPetImageName.json()
+      const filename = result[0].filename
 
-      const file=fs.createWriteStream(`public/images/${filename}`)
-      req.on('data',chunk=>{
+      const file = fs.createWriteStream(`public/images/${filename}`)
+      req.on('data', chunk => {
         file.write(chunk)
       })
 
-      req.on('end',()=>{
+      req.on('end', () => {
         file.end()
         res.send({
-          ok:true
+          ok: true
         })
       })
 
@@ -168,10 +186,9 @@ router.post('/upload', (req, res) => {
     }
 
   }
-  saveImage()  
+  saveImage()
 
- });
+});
 
 
 module.exports = router;
-

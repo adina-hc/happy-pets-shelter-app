@@ -1,8 +1,16 @@
 <section class="container">
+
   <h3 class="category-name">{{category.name}}</h3>
   <section class="flex-row justify-center">
+
+
+    {{#if empty}}
+    {{> no-pets}}
+
+    {{else}}
     {{#each category.pets as |pet|}}
     {{> pet-details}}
     {{/each}}
+    {{/if}}
   </section>
 </section>
