@@ -69,8 +69,10 @@ THEN a Pets form is displayed to enter pet details to store in the database
 ![Image of Technologies Used](./assets/images/technologies.png)
 
 ## Wireframing
-![Image of Initial design](./assets/images/wf1.png)
-![Image of Initial Design](./assets/images/wf2.png)
+![Image of Initial design]
+(./assets/images/wf1.png)
+![Image of Initial Design]
+(./assets/images/wf2.png)
 
 ---------------------------------------------------
 
@@ -79,7 +81,10 @@ THEN a Pets form is displayed to enter pet details to store in the database
 ### App Functionality
 
 New or existing user
-![Image of Initial Design](./assets/images/user.gif)
+![User screens](./assets/images/user.gif)
+
+Admin form to enter pets
+![Admin screen](./assets/images/admin.gif)
 
 
 
@@ -91,7 +96,9 @@ ____________________________________________________
 WHEN the user selects the pet from a category
 THEN the pet information displays
 AND the user is presented with a button to adopt the pet
-WHEN the button is clicked, the adoption request triggers a change of status from 'Shelter' to 'Rescued'
+WHEN the button is clicked, the adoption request triggers an adoption request
+THEN when the request is approved, the status changes from 'Shelter' to 'Pending
+WHEN pet is adopted, the status changes from 'Pending' to 'Adopted'
 ```
 
 ### Future Features
@@ -99,10 +106,18 @@ WHEN the button is clicked, the adoption request triggers a change of status fro
 * Admin has views to assign pet to adopter/user
 * User will be redirected to sign up if no log in information exists or if it is incorrect
 * User can adopt on a click of a button
+* User will fill out a request for adoption
+* Status changes from 'Shelter' to 'Pending' and when adopted to 'Adopted'
 
-## License
-```md
+_______________________________________________
 
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+ 
+[License: MIT](https://opensource.org/licenses/MIT)
 
-```
+## Links to application
+
+[Application link](http://www.happypetsshelter.com/)
+ 
+[Heroku deployment link](https://desolate-tundra-25750.herokuapp.com/)
